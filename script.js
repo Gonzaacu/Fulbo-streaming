@@ -1,4 +1,4 @@
-const API_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://script.google.com/macros/s/AKfycbxI21NUfxk_oYALpX9CEw3On8Q-naEhM5WKnIqVA05Beq1A8Lg_J7uhyGa480Gs1Rs/exec");
+const API_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://script.google.com/macros/library/d/1HS7tyOIf6F3rHVJF-6_L3GkKaYRXHQkU6plN3c2VIaGqgGlv-9vymP1T/2");
 
 fetch(API_URL)
     .then(response => response.json())
