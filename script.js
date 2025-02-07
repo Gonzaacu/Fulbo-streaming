@@ -1,6 +1,6 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbygn1y2LX6O-tAPc7Gm403B2dTzFsGRECD6qDaEI9RiqAPf2ApQyEjR3wIKpAVglBrV/exec";
 
-fetch(API_URL, { mode: 'no-cors' })  // Cambié a no-cors
+fetch(API_URL)
     .then(response => response.json())
     .then(data => {
         let listaEventos = document.getElementById("eventos");
