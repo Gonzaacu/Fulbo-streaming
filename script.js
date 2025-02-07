@@ -1,15 +1,12 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbygn1y2LX6O-tAPc7Gm403B2dTzFsGRECD6qDaEI9RiqAPf2ApQyEjR3wIKpAVglBrV/exec";
 
-fetch(API_URL, {
-    method: "GET",
-    mode: "no-cors"  // Añadir esta línea
-})
+fetch(API_URL)
     .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
+        console.log("Respuesta:", response); // Verifica la respuesta aquí
+        if (!response.ok) {
             throw new Error("Error en la respuesta");
         }
+        return response.json();
     })
     .then(data => {
         let listaEventos = document.getElementById("eventos");
@@ -19,4 +16,6 @@ fetch(API_URL, {
             listaEventos.appendChild(li);
         });
     })
-    .catch(error => console.error("Error al obtener los datos:", error));
+    .catch(error => {
+        console.error("Error al obtener los datos:", error);
+    });
