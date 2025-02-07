@@ -1,4 +1,4 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbygn1y2LX6O-tAPc7Gm403B2dTzFsGRECD6qDaEI9RiqAPf2ApQyEjR3wIKpAVglBrV/exec";
+const API_URL = "https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbxI21NUfxk_oYALpX9CEw3On8Q-naEhM5WKnIqVA05Beq1A8Lg_J7uhyGa480Gs1Rs/exec";
 
 fetch(API_URL)
     .then(response => {
