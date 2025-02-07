@@ -1,13 +1,7 @@
-const API_URL = "https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbxI21NUfxk_oYALpX9CEw3On8Q-naEhM5WKnIqVA05Beq1A8Lg_J7uhyGa480Gs1Rs/exec";
+const API_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://script.google.com/macros/s/AKfycbxI21NUfxk_oYALpX9CEw3On8Q-naEhM5WKnIqVA05Beq1A8Lg_J7uhyGa480Gs1Rs/exec");
 
 fetch(API_URL)
-    .then(response => {
-        console.log("Respuesta:", response); // Verifica la respuesta aquí
-        if (!response.ok) {
-            throw new Error("Error en la respuesta");
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         let listaEventos = document.getElementById("eventos");
         data.forEach(evento => {
@@ -16,6 +10,4 @@ fetch(API_URL)
             listaEventos.appendChild(li);
         });
     })
-    .catch(error => {
-        console.error("Error al obtener los datos:", error);
-    });
+    .catch(error => console.error("Error al obtener los datos:", error));
