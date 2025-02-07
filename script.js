@@ -1,13 +1,39 @@
-const API_URL = "https://api.allorigins.win/raw?url=" + encodeURIComponent("https://script.google.com/macros/library/d/1HS7tyOIf6F3rHVJF-6_L3GkKaYRXHQkU6plN3c2VIaGqgGlv-9vymP1T/2");
+// Importar Firebase y Firestore
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 
-fetch(API_URL)
-    .then(response => response.json())
-    .then(data => {
-        let listaEventos = document.getElementById("eventos");
-        data.forEach(evento => {
+// Configuración de Firebase
+const firebaseConfig = {
+    apiKey: "AIzaSyDJsmeXuz4uhSusxIFgmRYlt3O1V-33phc",
+    authDomain: "fulbo-streaming.firebaseapp.com",
+    projectId: "fulbo-streaming",
+    storageBucket: "fulbo-streaming.appspot.com",
+    messagingSenderId: "1073325082428",
+    appId: "1:1073325082428:web:d931182eaa3148c03f4039",
+    measurementId: "G-XVCVR41JES"
+};
+
+// Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Función para obtener eventos desde Firestore
+async function obtenerEventos() {
+    const eventosLista = document.getElementById("eventos");
+    eventosLista.innerHTML = ""; // Limpiar lista antes de actualizar
+
+    try {
+        const querySnapshot = await getDocs(collection(db, "transmisiones"));
+        querySnapshot.forEach((doc) => {
+            const evento = doc.data();
             let li = document.createElement("li");
-            li.innerHTML = `<a href="player.html?link=${evento['Enlace 1']}">${evento.Nombre}</a>`;
-            listaEventos.appendChild(li);
+            li.innerHTML = `<a href="player.html?link=${evento.enlace}">${evento.nombre}</a>`;
+            eventosLista.appendChild(li);
         });
-    })
-    .catch(error => console.error("Error al obtener los datos:", error));
+    } catch (error) {
+        console.error("Error al obtener los eventos:", error);
+    }
+}
+
+// Llamar a la función cuando se cargue la página
+document.addEventListener("DOMContentLoaded", obtenerEventos);
