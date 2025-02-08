@@ -6,7 +6,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyDJsmeXuz4uhSusxIFgmRYlt3O1V-33phc",
     authDomain: "fulbo-streaming.firebaseapp.com",
     projectId: "fulbo-streaming",
-    storageBucket: "fulbo-streaming.firebasestorage.app",
+    storageBucket: "fulbo-streaming.appspot.com",
     messagingSenderId: "1073325082428",
     appId: "1:1073325082428:web:d931182eaa3148c03f4039",
     measurementId: "G-XVCVR41JES"
