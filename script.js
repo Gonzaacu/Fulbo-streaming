@@ -23,10 +23,11 @@ async function obtenerEventos() {
 
     querySnapshot.forEach(doc => {
         let data = doc.data();
-        let li = document.createElement("li");
+        let nombreCanal = Object.keys(data)[0];  // Obtiene el nombre de la clave ("ESPN 1")
+        let enlaces = data[nombreCanal];  // Accede al array de enlaces
 
-        // Usar el primer enlace disponible
-        li.innerHTML = `<a href="player.html?link=${data.enlaces[0]}">${data.nombre}</a>`;
+        let li = document.createElement("li");
+        li.innerHTML = `<a href="player.html?link=${enlaces[0]}">${nombreCanal}</a>`;
         
         eventosLista.appendChild(li);
     });
