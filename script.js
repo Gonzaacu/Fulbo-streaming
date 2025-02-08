@@ -23,14 +23,13 @@ async function obtenerEventos() {
     try {
         const querySnapshot = await getDocs(collection(db, "canales"));
         querySnapshot.forEach(doc => {
-            let data = doc.data();
-            let nombreCanal = Object.keys(data)[0];  // Obtiene el nombre de la clave ("ESPN 1")
-            let enlaces = data[nombreCanal];  // Accede al array de enlaces
+            let li = document.createElement("li");
+            let link = document.createElement("a");
+            link.href = `player.html?link=${encodeURIComponent(enlaces[0])}`;
+            link.textContent = nombreCanal; // ✅ Evita inyecciones de código
+            li.appendChild(link);
+            eventosLista.appendChild(li);
 
-            if (enlaces && enlaces.length > 0) {  // ✅ Verifica que hay enlaces disponibles
-                let li = document.createElement("li");
-                li.innerHTML = `<a href="player.html?link=${encodeURIComponent(enlaces[0])}">${nombreCanal}</a>`;
-                eventosLista.appendChild(li);
             }
         });
     } catch (error) {
